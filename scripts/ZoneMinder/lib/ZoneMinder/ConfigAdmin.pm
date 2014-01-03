@@ -111,6 +111,8 @@ sub loadConfigFromDB
 sub saveConfigToDB
 {
 	print( "Saving config to DB\n" );
+	local $SIG{INT} = 'IGNORE';
+	local $SIG{TERM} = 'IGNORE';
 	my $dbh = DBI->connect( "DBI:mysql:database=".$Config{ZM_DB_NAME}.";host=".$Config{ZM_DB_HOST}, $Config{ZM_DB_USER}, $Config{ZM_DB_PASS} );
 
 	if ( !$dbh )
