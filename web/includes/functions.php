@@ -1617,7 +1617,7 @@ function sortTag( $field )
 
 function getLoad()
 {
-    $uptime = shell_exec( 'uptime' );
+    $uptime = shell_exec( 'LC_ALL="EN_en" uptime' );
     $load = '';
     if ( preg_match( '/load average: ([\d.]+)/', $uptime, $matches ) )
         $load = $matches[1];
