@@ -1288,6 +1288,14 @@ body = "ZM alarm detected - %EL% secs, %EF%/%EFA% frames, t%EST%/m%ESM%/a%ESA% s
 		type => $types{hexadecimal},
 		category => "system",
 	},
+	{
+                name => "ZM_USE_SYSTEMD",
+                default => "yes",
+                description => "Use systemd restart command",
+                help => "ZoneMinder by default uses zmpkg.pl to start, stop or restart ZoneMinder via the webfrontend. This conflicts when usig systemd. If you use systemd you should enable this settings.",
+                type => $types{boolean},
+                category => "system",
+        },
     # Deprecated, really no longer necessary
 	{
 		name => "ZM_WEB_REFRESH_METHOD",

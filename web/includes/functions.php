@@ -918,7 +918,14 @@ function canStream()
 
 function packageControl( $command )
 {
-    $string = ZM_PATH_BIN.'/zmpkg.pl '.escapeshellarg( $command );
+    if (ZM_USE_SYSTEMD)
+    {
+      $string = "sudo /bin/systemctl $command zm.service";
+    }
+    else
+    {
+      $string = ZM_PATH_BIN."/zmpkg.pl $command";
+    }
     $string .= " 2>/dev/null >&- <&- >/dev/null";
     exec( $string );
 }
