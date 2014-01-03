@@ -276,7 +276,7 @@ our @options =
 	},
 	{
 		name => "ZM_OPT_CAMBOZOLA",
-		default => "no",
+		default => "yes",
 		description => "Is the (optional) cambozola java streaming client installed",
 		help => "Cambozola is a handy low fat cheese flavoured Java applet that ZoneMinder uses to view image streams on browsers such as Internet Explorer that don't natively support this format. If you use this browser it is highly recommended to install this from http://www.charliemouse.com/code/cambozola/  however if it is not installed still images at a lower refresh rate can still be viewed.",
 		type => $types{boolean},
@@ -408,7 +408,7 @@ our @options =
 	},
 	{
 		name => "ZM_PATH_FFMPEG",
-		default => "@PATH_FFMPEG@",
+		default => "/usr/bin/ffmpeg",
 		description => "Path to (optional) ffmpeg mpeg encoder",
 		help => "This path should point to where ffmpeg has been installed.",
 		requires => [ { name=>"ZM_OPT_FFMPEG", value=>"yes" } ],
@@ -417,7 +417,7 @@ our @options =
 	},
 	{
 		name => "ZM_FFMPEG_INPUT_OPTIONS",
-		default => "",
+		default => "-sameq",
 		description => "Additional input options to ffmpeg",
 		help => "Ffmpeg can take many options on the command line to control the quality of video produced. This option allows you to specify your own set that apply to the input to ffmpeg (options that are given before the -i option). Check the ffmpeg documentation for a full list of options which may be used here.",
 		requires => [ { name=>"ZM_OPT_FFMPEG", value=>"yes" } ],
@@ -615,7 +615,7 @@ our @options =
 	},
 	{
 		name => "ZM_PATH_LOGS",
-		default => "@ZM_LOGDIR@",
+		default => "/var/log/zm",
 		description => "Path to the various logs that the ZoneMinder daemons generate",
 		help => "There are various daemons that are used by ZoneMinder to perform various tasks. Most generate helpful log files and this is where they go. They can be deleted if not required for debugging.",
 		type => $types{abs_path},
@@ -1863,7 +1863,7 @@ body = "ZM alarm detected - %EL% secs, %EF%/%EFA% frames, t%EST%/m%ESM%/a%ESA% s
 	},
 	{
 		name => "ZM_EYEZM_LOG_FILE",
-		default => "@ZM_LOGDIR@/zm_xml.log",
+		default => "/var/log/zm/zm_xml.log",
 		description => "Default filename to use when logging eyeZm Output and EYEZM_LOG_TO_FILE is enabled", 
 		help => "This file will contain it's own output from the eyeZm Plugin when EYEZM_LOG_TO_FILE and EYEZM_DEBUG are both enabled",
 		type => $types{string},
