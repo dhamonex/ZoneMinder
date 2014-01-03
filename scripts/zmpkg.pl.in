@@ -54,6 +54,13 @@ if ( $command eq 'version' ) {
 my $state;
 
 my $dbh = zmDbConnect();
+
+my $zm_db_init_status = system( "zm_database_init --non-interactive" );
+if ( $zm_db_init_status ne 0 ) {
+  Fatal( "Could not execute zm_database_init" );
+  exit( -1 );
+}
+
 Debug("Command: $command");
 if ( $command and ( $command !~ /^(?:start|stop|restart|status|logrot|version)$/ ) ) {
   # Check to see if it's a valid run state
