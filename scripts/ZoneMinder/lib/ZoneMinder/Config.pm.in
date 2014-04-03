@@ -63,7 +63,7 @@ use constant ZM_CONFIG => "@ZM_CONFIG@"; # Path to the ZoneMinder config file
 use Carp;
 
 # Load the config from the database into the symbol table
-BEGIN
+sub load_configuration
 {
 	my $config_file = ZM_CONFIG;
 	( my $local_config_file = $config_file ) =~ s|^.*/|./|;
@@ -99,6 +99,10 @@ BEGIN
 	#$dbh->disconnect();
 }
 
+BEGIN
+{
+       load_configuration(); 
+}
 1;
 __END__
 
