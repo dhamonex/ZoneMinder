@@ -151,6 +151,8 @@ if ( $command =~ /^(?:start|restart)$/ )
           exit( -1 );
         }
         
+        ZoneMinder::Config::load_configuration();
+        
         if ( $Config{ZM_DYN_DB_VERSION} and ( $Config{ZM_DYN_DB_VERSION} ne ZM_VERSION ) )
         {
             Fatal( "Version mismatch, system is version ".ZM_VERSION.", database is ".$Config{ZM_DYN_DB_VERSION}.", please run zmupdate.pl to update." );
