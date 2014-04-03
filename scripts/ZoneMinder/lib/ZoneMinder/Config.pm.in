@@ -72,9 +72,8 @@ use Carp;
 require ZoneMinder::Database;
 
 # Load the config from the database into the symbol table
-BEGIN {
-require ZoneMinder::Database;
-
+sub load_configuration
+{
   # Process name, value pairs from the main config file first
   my $config_file = ZM_CONFIG;
   process_configfile($config_file);
@@ -144,7 +143,7 @@ require ZoneMinder::Database;
     close($CONFIG);
   } # end sub process_configfile
 
-} # end BEGIN
+} # end load_configuration
 
 sub loadConfigFromDB {
   print( 'Loading config from DB' );
@@ -248,6 +247,11 @@ sub saveConfigToDB {
   $dbh->{AutoCommit} = $ac;
 } # end sub saveConfigToDB
 
+BEGIN
+{
+       require ZoneMinder::Database;
+       load_configuration(); 
+} # end BEGIN
 1;
 __END__
 

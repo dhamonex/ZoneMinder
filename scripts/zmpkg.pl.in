@@ -175,6 +175,9 @@ if ( $command =~ /^(?:start|restart)$/ ) {
   Debug("zmdc.pl check = $status");
 
   if ( $status eq 'stopped' ) {
+  
+    ZoneMinder::Config::load_configuration();
+    
     if ( $Config{ZM_DYN_DB_VERSION}
         and ( $Config{ZM_DYN_DB_VERSION} ne ZM_VERSION )
        ) {
