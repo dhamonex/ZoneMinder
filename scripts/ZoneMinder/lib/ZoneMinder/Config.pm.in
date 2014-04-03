@@ -69,7 +69,8 @@ use constant ZM_CONFIG => "@ZM_CONFIG@"; # Path to the ZoneMinder config file
 use Carp;
 
 # Load the config from the database into the symbol table
-BEGIN {
+sub load_configuration
+{
   my $config_file = ZM_CONFIG;
   open( my $CONFIG, "<", $config_file )
     or croak( "Can't open config file '$config_file': $!" );
@@ -126,7 +127,7 @@ BEGIN {
     }
     $sth->finish();
   }
-} # end BEGIN
+} # end load_configuration
 
 sub loadConfigFromDB {
   print( "Loading config from DB\n" );
@@ -229,6 +230,10 @@ sub saveConfigToDB {
   $dbh->{AutoCommit} = $ac;
 } # end sub saveConfigToDB
 
+BEGIN
+{
+       load_configuration(); 
+} # end BEGIN
 1;
 __END__
 
