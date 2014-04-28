@@ -30,7 +30,7 @@ foreach ( getSkinIncludes( 'includes/functions.php' ) as $includeFile )
 if ( empty($view) )
 	$view = 'console';
 
-if ( !isset($user) && ZM_OPT_USE_AUTH )
+if ( !isset($user) && ZM_OPT_USE_AUTH && ZM_AUTH_TYPE == "remote" && !empty( $_SERVER['REMOTE_USER']) )
 {
 	echo "Invalid Login";
 	exit;
