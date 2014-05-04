@@ -220,7 +220,7 @@ else
       <h3 id="loginBandwidth"><?php
 if ( ZM_OPT_USE_AUTH )
 {
-?><?= $SLANG['LoggedInAs'] ?> <?= makePopupLink( '?view=logout', 'zmLogout', 'logout', $user['Username'], (ZM_AUTH_TYPE == "builtin") ) ?>, <?= strtolower( $SLANG['ConfiguredFor'] ) ?><?php
+?><?= $SLANG['LoggedInAs'] ?> <?= makePopupLink( '?view=logout', 'zmLogout', 'logout', $user['Username'], (ZM_AUTH_TYPE == "builtin") ) ?>, <?= mb_strtolower( $SLANG['ConfiguredFor'], mb_detect_encoding( $SLANG['ConfiguredFor'] ) ) ?><?php
 }
 else
 {
