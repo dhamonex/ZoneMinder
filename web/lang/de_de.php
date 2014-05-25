@@ -69,6 +69,8 @@
 // setlocale( LC_CTYPE, 'en_GB' ); Character class settings 4.3.0 and after
 // setlocale( LC_TIME, 'en_GB' ); Date and time formatting 4.3.0 and after
 
+setlocale( LC_TIME, 'de_DE.UTF8' );
+
 // Simple String Replacements
 $SLANG = array(
     '24BitColour'          => '24-Bit-Farbe',
@@ -724,6 +726,10 @@ $CLANG = array(
     'MonitorFunction'      => 'Monitor %1$s Funktion',
     'RunningRecentVer'     => 'Sie benutzen die aktuellste Version von Zoneminder, v%s.',
     'VersionMismatch'      => 'Version mismatch, system is version %1$s, database is %2$s.', // Added - 2011-05-25
+);
+
+$DATE_LANG = array(
+    'CONSOLE_LONG'         => '%A, %d. %B %Y. %H:%M',
 );
 
 // The next section allows you to describe a series of word ending and counts used to 
