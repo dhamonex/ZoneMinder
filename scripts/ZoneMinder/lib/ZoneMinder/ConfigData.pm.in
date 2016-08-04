@@ -1027,7 +1027,7 @@ our @options = (
   },
   {
     name        => 'ZM_PATH_FFMPEG',
-    default     => '@PATH_FFMPEG@',
+    default     => '/usr/bin/ffmpeg',
     description => 'Path to (optional) ffmpeg mpeg encoder',
     help        => 'This path should point to where ffmpeg has been installed.',
     requires    => [ { name=>'ZM_OPT_FFMPEG', value=>'yes' } ],
