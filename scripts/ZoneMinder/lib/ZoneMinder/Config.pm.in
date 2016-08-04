@@ -184,6 +184,8 @@ sub loadConfigFromDB {
 
 sub saveConfigToDB {
   print( 'Saving config to DB ' . @options . " entries\n" );
+  local $SIG{INT} = 'IGNORE';
+  local $SIG{TERM} = 'IGNORE';
   my $dbh = ZoneMinder::Database::zmDbConnect();
   if ( !$dbh ) {
     print( "Error: unable to save options to database: $DBI::errstr\n" );
