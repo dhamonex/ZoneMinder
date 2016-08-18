@@ -158,8 +158,8 @@ if ( !empty($user['MonitorIds']) )
 
 if ( !isset($_REQUEST['minTime']) && !isset($_REQUEST['maxTime']) )
 {
-    $maxTime=strftime("%c",time());
-    $minTime=strftime("%c",time() - 3600);
+    $maxTime=strftime("%Y-%m-%d %H:%M:%S",time());
+    $minTime=strftime("%Y-%m-%d %H:%M:%S",time() - 3600);
 }
 if ( isset($_REQUEST['minTime']) )
     $minTime = validHtmlStr($_REQUEST['minTime']);
@@ -362,8 +362,8 @@ if($index == 0)  // if there is no data set the min/max to the passed in values
 // We only reset the calling time if there was no calling time
 if(!isset($minTime) || !isset($maxTime))
 {
-    $maxTime = strftime($maxTimeSecs);
-    $minTime = strftime($minTimeSecs);
+    $maxTime = strftime("%Y-%m-%d %H:%M:%S", $maxTimeSecs);
+    $minTime = strftime("%Y-%m-%d %H:%M:%S", $minTimeSecs);
 }
 else
 {
