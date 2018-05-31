@@ -1659,7 +1659,7 @@ Image *Image::Highlight( unsigned int n_images, Image *images[], const Rgb thres
         uint8_t *psrc = images[j]->buffer+c;
 
 #ifndef SOLARIS
-        if ( (unsigned)abs((*psrc)-RGB_VAL(ref_colour,c)) >= RGB_VAL(threshold,c) )
+        if ( (unsigned)fabs((*psrc)-RGB_VAL(ref_colour,c)) >= RGB_VAL(threshold,c) )
 #else
         if ( (unsigned)std::abs((*psrc)-RGB_VAL(ref_colour,c)) >= RGB_VAL(threshold,c) )
 #endif
