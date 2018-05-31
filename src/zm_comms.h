@@ -25,6 +25,7 @@
 
 #include <string.h>
 #include <unistd.h>
+#include <sys/uio.h>
 #include <netdb.h>
 #include <errno.h>
 #include <sys/un.h>
