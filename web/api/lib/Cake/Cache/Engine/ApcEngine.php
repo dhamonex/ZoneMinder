@@ -75,11 +75,11 @@ class ApcEngine extends CacheEngine {
  */
 	public function read($key) {
 		$time = time();
-		$cachetime = (int)apc_fetch($key . '_expires');
+		$cachetime = (int)apcu_fetch($key . '_expires');
 		if ($cachetime !== 0 && ($cachetime < $time || ($time + $this->settings['duration']) < $cachetime)) {
 			return false;
 		}
-		return apc_fetch($key);
+		return apcu_fetch($key);
 	}
 
 /**
@@ -157,7 +157,7 @@ class ApcEngine extends CacheEngine {
 			}
 		}
 
-		$groups = apc_fetch($this->_compiledGroupNames);
+		$groups = apcu_fetch($this->_compiledGroupNames);
 		if (count($groups) !== count($this->settings['groups'])) {
 			foreach ($this->_compiledGroupNames as $group) {
 				if (!isset($groups[$group])) {
@@ -189,7 +189,7 @@ class ApcEngine extends CacheEngine {
 	}
 
 /**
- * Write data for key into cache if it doesn't exist already. 
+ * Write data for key into cache if it doesn't exist already.
  * If it already exists, it fails and returns false.
  *
  * @param string $key Identifier for the data.

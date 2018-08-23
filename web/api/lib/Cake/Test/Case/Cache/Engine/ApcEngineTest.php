@@ -201,7 +201,7 @@ class ApcEngineTest extends CakeTestCase {
 		$result = Cache::clear(false, 'apc');
 		$this->assertTrue($result);
 		$this->assertFalse(Cache::read('some_value', 'apc'));
-		$this->assertEquals('survive', apc_fetch('not_cake'));
+		$this->assertEquals('survive', apcu_fetch('not_cake'));
 		apc_delete('not_cake');
 	}
 
