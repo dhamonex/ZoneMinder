@@ -20,9 +20,6 @@
 #ifndef ZM_EVENTSTREAM_H
 #define ZM_EVENTSTREAM_H
 
-#include <set>
-#include <map>
-
 #include "zm_image.h"
 #include "zm_stream.h"
 #include "zm_video.h"
@@ -47,8 +44,8 @@ class EventStream : public StreamBase {
   protected:
     struct FrameData {
       //unsigned long   id;
-      time_t          timestamp;
-      time_t          offset;
+      double          timestamp;
+      double          offset;
       double          delta;
       bool            in_db;
     };
@@ -65,6 +62,8 @@ class EventStream : public StreamBase {
       FrameData       *frames;
       char            video_file[PATH_MAX];
       Storage::Schemes  scheme;
+      int             SaveJPEGs;
+      Monitor::Orientation Orientation;
     };
 
   protected:
@@ -78,6 +77,7 @@ class EventStream : public StreamBase {
     int curr_frame_id;
     double curr_stream_time;
     bool  send_frame;
+    struct timeval start;     // clock time when started the event
 
     EventData *event_data;
     FFmpeg_Input  *ffmpeg_input;
@@ -94,6 +94,7 @@ class EventStream : public StreamBase {
   public:
     EventStream() {
       mode = DEFAULT_MODE;
+      replay_rate = DEFAULT_RATE;
 
       forceEventChange = false;
 
@@ -108,7 +109,6 @@ class EventStream : public StreamBase {
       input_codec = 0;
 
       ffmpeg_input = NULL;
-
     }
     void setStreamStart( uint64_t init_event_id, unsigned int init_frame_id );
     void setStreamStart( int monitor_id, time_t event_time );
@@ -118,8 +118,8 @@ class EventStream : public StreamBase {
     void runStream();
     Image *getImage();
   private:
-      AVCodecContext *input_codec_context;
-      AVCodec *input_codec;
+    AVCodecContext *input_codec_context;
+    AVCodec *input_codec;
 };
 
 #endif // ZM_EVENTSTREAM_H
